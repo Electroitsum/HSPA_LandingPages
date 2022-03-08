@@ -1,0 +1,1204 @@
+<?php
+if(isset($_POST["submit"])){
+// Checking For Blank Fields..
+if($_POST["vname"]==""||$_POST["vemail"]==""||$_POST["sub"]==""||$_POST["msg"]==""){
+echo "Fill All Fields..";
+}else{
+// Check if the "Sender's Email" input field is filled out
+$email=$_POST['vemail'];
+// Sanitize E-mail Address
+$email =filter_var($email, FILTER_SANITIZE_EMAIL);
+// Validate E-mail Address
+$email= filter_var($email, FILTER_VALIDATE_EMAIL);
+if (!$email){
+echo "Invalid Sender's Email";
+}
+else{
+$subject = $_POST['sub'];
+$message = $_POST['msg'];
+$headers = 'From:'. $email2 . "rn"; // Sender's Email
+$headers .= 'Cc:'. $email2 . "rn"; // Carbon copy to Sender
+// Message lines should not exceed 70 characters (PHP rule), so wrap it
+$message = wordwrap($message, 70);
+// Send Mail By PHP Mail Function
+mail("recievers_mail_id@xyz.com", $subject, $message, $headers);
+echo "Your mail has been sent successfuly ! Thank you for your feedback";
+}
+}
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <meta property="og:title" content="Your gift doubles!" />
+    <meta property="twitter:title" content="Your gift doubles!" />
+    <meta
+      property="og:description"
+      content="Through a generous match, you can help twice as many animals with a single gift as long as
+   you give by December 31!"
+    />
+    <meta
+      property="twitter:description"
+      content="Through a generous match, you can help twice as many animals with a single gift as long as
+   you give by December 31!"
+    /> -->
+    <title>Donation Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+    <link
+      href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,600,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://nvlupin.blob.core.windows.net/images/van/EA/EA005/1/77954/images/themes/everyaction-form-styles.css?5"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+
+    <style type="text/css">
+      @font-face {
+        font-family: FranklinGothicEFHeavyRegular;
+        src: url("fonts/FranklinGothicEFHeavyRegular.otf");
+      }
+
+      @font-face {
+        font-family: ITCFranklinGothicStd-Demi;
+        src: url("fonts/ITCFranklinGothicStd-Demi.otf");
+      }
+
+      @font-face {
+        font-family: cambriab;
+        src: url("fonts/cambriab.ttf");
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        /* background-color: #f9f9f9; */
+      }
+
+      p {
+        text-align: justify;
+        font-size: 14px !important;
+      }
+
+      .header {
+        display: block;
+      }
+
+      .navbar-brand {
+        padding: 0;
+        margin: 0;
+        margin-top: 12px;
+      }
+
+      .navbar-brand img {
+        height: 85px;
+        position: absolute;
+        /* margin-bottom: 40px; */
+        margin-left: 30px;
+      }
+
+      .header-container .navbar {
+        position: relative;
+        background-image: url(img/ft-pattern.png);
+        color: #fff;
+        padding: 0;
+        height: 110px;
+      }
+
+      .header .navbar > * {
+        position: relative;
+      }
+
+      .header-container .navbar:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /* background-color: rgb(127 189 66 / 90%); */
+        background-image: url("img/VectorSmartObject.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .header-border {
+        border-bottom: 2px solid #e6e6e6;
+        width: 100%;
+      }
+
+      .content .pattern-block img {
+        text-align: center;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .para-1-title {
+        font-size: 30px;
+        /* font-family: cambriab; */
+        font-family: Arial;
+        font-weight: 600;
+      }
+
+      .para-1-text {
+        font-size: 18px !important;
+        font-family: "Libre Franklin", sans-serif;
+      }
+
+      .para-1-text:last-of-type {
+        margin-bottom: 40px;
+      }
+
+      .about-img {
+        height: 300px;
+        overflow: hidden;
+      }
+
+      .content h5 {
+        /* text-transform: uppercase;
+             letter-spacing: 1px;
+             font-weight: bolder; */
+      }
+
+      .section-2-left {
+        margin-top: -50px;
+      }
+
+      .content .pattern-block p {
+        text-align: center;
+      }
+
+      .gift-text {
+        color: #333;
+        font-size: 1.25em !important;
+        font-weight: 600;
+        line-height: 1.2em;
+        margin: 20px 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      .font10 {
+        font-size: 10px !important;
+      }
+
+      .font-FG {
+        font-family: FranklinGothicEFHeavyRegular;
+      }
+
+      .font18 {
+        font-size: 18px;
+      }
+
+      .donations-box .form-group {
+        border-radius: 2px;
+        color: #fff;
+        float: none !important;
+        font-size: 20px;
+        font-weight: 600;
+        height: 50px;
+        line-height: 40px;
+        margin: 0 15px 20px 0;
+        /* padding: 5px 20px; */
+        transition: all 0.5s ease-in-out;
+        width: calc((100% / 4) - 14px);
+        position: relative;
+      }
+
+      #btn-box-4 {
+        margin-right: 0;
+      }
+
+      #btn-box-6 {
+        width: calc(100% - (100% / 4) - 14px);
+        margin-right: 0;
+      }
+
+      .donations-box .form-group a {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .donations-box .col-lg-4 {
+        padding-right: 5px;
+        padding-left: 0px;
+        flex: none;
+        width: 25%;
+      }
+
+      .donations-box .col-lg-6 {
+        padding-left: 0;
+        padding-right: 5px;
+      }
+
+      .donations-box .col-lg-8 input {
+        border-radius: 0;
+        border-color: #0156ba;
+        border-width: 2px;
+        padding: 5px;
+      }
+
+      .donations-box {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .about-text .font-FG {
+        font-size: 30px;
+        font-family: cambriab;
+        margin-bottom: 25px;
+      }
+
+      .contact-form .form-group {
+        margin-bottom: 10px;
+      }
+
+      .contact-form small {
+        color: #a2abb4;
+      }
+
+      .contact-form input,
+      .contact-form select {
+        /* background-color: #f2f6fb; */
+        height: 46px;
+      }
+
+      .input-box-1 {
+        width: 180px;
+        margin-right: 15px;
+      }
+
+      .input-box-2 {
+        width: 275px;
+        margin-right: 0px;
+      }
+
+      .input-box-3 {
+        width: 220px;
+        margin-right: 15px;
+      }
+
+      .input-box-4 {
+        width: 235px;
+        margin-right: 0px;
+      }
+
+      .input-box-5 {
+        width: 100%;
+        margin-right: 10px;
+      }
+
+      .input-box-6 {
+        width: 220px;
+        margin-right: 15px;
+      }
+
+      .input-box-7 {
+        width: 235px;
+        margin-right: 0px;
+      }
+
+      .input-box-8 {
+        width: 220px;
+        margin-right: 15px;
+      }
+
+      .input-box-9 {
+        width: 235px;
+        margin-right: 0px;
+      }
+
+      .input-box-10 {
+        width: 220px;
+        margin-right: 15px;
+      }
+
+      .input-box-11 {
+        width: 235px;
+        margin-right: 0px;
+      }
+
+      .input-box-12 {
+        width: 220px;
+        margin-right: 15px;
+      }
+
+      .input-box-13 {
+        width: 235px;
+        margin-right: 0px;
+      }
+
+      .social-link {
+        padding: unset;
+        margin: unset;
+        list-style: none;
+        text-align: center;
+      }
+
+      .social-link li {
+        display: inline-block;
+      }
+
+      .social-link li a {
+        color: #ffffff;
+        background-color: #026785;
+        display: block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 100%;
+        margin: 0 5px;
+      }
+
+      input[id="phone"] {
+        width: 100%;
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da;
+      }
+
+      .contact-form-container {
+        margin-top: -95px;
+      }
+
+      .footer {
+        background: #141f49;
+        height: 130 px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: rgb(0, 0, 0);
+        /* padding: 30px 30px; */
+        /* display: flex; */
+        /* flex-direction: column; */
+        /* flex-wrap: nowrap; */
+        /* align-content: flex-end; */
+        font-size: 12px;
+      }
+
+      .footer > * {
+        position: relative;
+      }
+
+      .footer:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .footer .footer-logo .right p {
+        text-align: unset;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        border-left: 3px solid hotpink;
+        padding-left: 15px;
+      }
+
+      .footer .footer-logo img {
+        margin-bottom: 10px;
+        /* height: 65px; */
+        margin-top: 20px;
+      }
+
+      footer.theme-footer p {
+        padding: 0;
+      }
+
+      .footer p a {
+        color: rgb(0, 0, 0);
+      }
+
+      .footer .menu-link {
+        display: block;
+        font-size: 0.9375em;
+        line-height: 18px;
+        margin: 0 0 10px;
+        padding: 0 0px 0 0;
+        text-align: right;
+      }
+
+      .menu-link li:not(#menu-item-4) {
+        padding-left: 10px;
+        padding-right: 10px;
+        border-right: 1px solid rgb(0, 0, 0);
+      }
+
+      .footer .menu-link li a {
+        color: #0156ba;
+        font-size: 15px;
+      }
+
+      /* @media screen and (min-width: 320px) and (max-width: 767px) {
+         .header .collapse {
+            display: block;
+            flex-basis: unset;
+            flex-grow: unset;
+            align-items: unset;
+         }
+      } */
+
+      .btn-primary {
+        color: #fff;
+        background-color: #141f49;
+        border-color: #141f49;
+      }
+
+      .donation-box {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+
+      .left-side-box {
+        font-size: 12px !important;
+        font-family: "Libre Franklin", sans-serif;
+        padding-right: 20px;
+        width: 50%;
+        color: #495057;
+        line-height: 1.4;
+        margin-bottom: 0;
+      }
+
+      .donation-box p a {
+        font-size: 10px;
+      }
+
+      .fast-button {
+        display: flex;
+        align-items: center;
+      }
+
+      .btn-outline-secondary {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding: 0 5px;
+        color: #007bff;
+      }
+
+      .fa-plus-circle {
+        margin: 5px 2px;
+      }
+
+      .lock-paragraph {
+        font-size: 12px !important;
+        font-weight: 400;
+        line-height: 1.5em;
+        margin: 0px 0 40px;
+        padding: 0px 0 0 30px;
+        position: relative;
+      }
+
+      .toggle-container .form-check-label {
+        font-size: 15px;
+        line-height: 24px;
+        margin: 0;
+        padding-left: 34px;
+        text-transform: none;
+      }
+
+      .form-check-inline {
+        align-items: flex-start;
+      }
+
+      .form-check-inline .form-check-input {
+        margin-top: 6px;
+      }
+
+      #memory {
+        color: black;
+        padding-left: 0px;
+      }
+
+      #d-btn1,
+      #d-btn2,
+      #d-btn3,
+      #d-btn4,
+      #d-btn5 {
+        background: #026785;
+        border: 0px;
+        border-radius: 0px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #d-btn1.active,
+      #d-btn2.active,
+      #d-btn3.active,
+      #d-btn4.active,
+      #d-btn5.active {
+        background: #ffc82a;
+        border: 0px;
+      }
+
+      /* #menu-item-4{
+            border-right: 0px !important;
+         } */
+
+      #form-btn {
+        background-color: #026785;
+        border: 0;
+        border-radius: 2px;
+        color: #fff;
+        display: block;
+        float: none;
+        font-size: 1.125em;
+        font-weight: 600;
+        height: 50px;
+        letter-spacing: 1.5px;
+        line-height: 20px;
+        margin: 0;
+        padding: 0 30px;
+        text-transform: uppercase;
+        white-space: normal;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .font12 {
+        font-size: 12px !important;
+      }
+
+      .contact-form label {
+        font-size: 16px;
+        white-space: nowrap;
+        font-weight: 400;
+        margin-bottom: 2px;
+      }
+
+      .contact-form input {
+        /* background-color: ; */
+      }
+
+      .donations-box input {
+        border-color: #026785;
+        border-radius: 0;
+        border-width: 2px;
+        padding-left: 20px;
+        position: relative;
+        padding-bottom: 5px;
+        font-weight: 600;
+        height: 100%;
+        font-size: 20px;
+      }
+
+      /* .donations-box input::before {
+         content: '$';
+         position: absolute;
+         left: 10px;
+         font-size: 16px;
+         color: #0156ba;
+      } */
+
+      .fastAction .fa-cta {
+        line-height: 30px;
+        display: block;
+        white-space: nowrap;
+        float: right;
+        display: flex;
+        align-items: center;
+      }
+
+      .fastAction .profile-link {
+        background-color: white;
+        color: #fff;
+        font-weight: bold;
+        padding: 4px 4px 0 1px;
+        position: relative;
+        text-decoration: none;
+        height: 30px;
+        width: 110px;
+        display: inline-block;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        position: relative;
+        padding: 4px;
+        vertical-align: bottom;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .fastAction .profile-link .profile-link-fa-image {
+        position: absolute;
+        width: 94px;
+        height: 15px;
+        top: 6px;
+        left: 8px;
+      }
+
+      .donation-text {
+        display: block;
+        color: #333;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.2em;
+        margin: 20px 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      .toggle-container {
+        font-family: "Libre Franklin", sans-serif;
+      }
+
+      .toggle-container div.toggle-links-block {
+        display: flex;
+        height: 24px;
+        margin: 0 0 10px;
+      }
+
+      .toggle-container a.toggle-link.active:before {
+        background: #026785;
+        border: 1px solid #026785;
+      }
+
+      .toggle-container a.toggle-link:before {
+        border: 1px solid #999;
+        border-radius: 100%;
+        content: "";
+        display: block;
+        height: 24px;
+        left: 0;
+        position: absolute;
+        width: 24px;
+      }
+
+      .toggle-container a.toggle-link {
+        border-radius: 15px;
+        color: #333;
+        display: block;
+        line-height: 1.5em;
+        height: 24px;
+        padding: 0 15px 0 30px;
+        position: relative;
+      }
+
+      .toggle-container a.toggle-link:hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .form-container .contact-title {
+        color: #333;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.2em;
+        margin: 0;
+        padding: 10px 10px 10px 0;
+        /* margin-bottom: 10px; */
+        display: inline-block;
+      }
+
+      aside.secondary-content .fa-lock {
+        top: 5px;
+      }
+
+      .fastAction .circle {
+        display: inline-block;
+        background: #878787;
+        color: #fff;
+        font-size: 13px;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        border-radius: 16px;
+        font-family: monospace;
+        font-weight: bold;
+        text-decoration: none;
+        margin-left: 4px;
+      }
+
+      .exhortation {
+        background-image: url(https://nvlupin.blob.core.windows.net/images/van/EA/EA005/1/77954/images/themes/green-arrow.svg);
+        background-size: 30px 40px;
+        background-position: 0px 0px;
+        background-repeat: no-repeat;
+        color: #81bc00;
+        font-size: 0.875em;
+        font-weight: 700;
+        line-height: 20px;
+        margin: 10px 0;
+        min-height: 40px;
+        padding: 0 0 0 40px;
+      }
+
+      @media screen and (max-width: 1024px) {
+        .contact-form-container {
+          margin-top: -50px;
+        }
+
+        .about-img {
+          height: 260px;
+        }
+
+        .section-2-right .about-text {
+          margin-top: -50px;
+        }
+
+        .contact-form-container .col-lg-6 {
+          width: 66%;
+          max-width: unset;
+          flex: none;
+        }
+
+        .section-2-left {
+          margin-top: 0;
+        }
+
+        .donations-box .col-lg-4 {
+          width: 33%;
+        }
+
+        .input-box-1 {
+          width: 160px;
+        }
+
+        .input-box-3 {
+          width: 200px;
+        }
+
+        .input-box-5 {
+          margin-right: 0;
+        }
+
+        .input-box-6,
+        .input-box-8,
+        .input-box-10,
+        .input-box-12 {
+          width: 200px;
+        }
+      }
+
+      @media screen and (max-width: 945px) {
+        /* #btn-box-5 {
+            width: calc(100% - 245px);
+         } */
+        .about-img {
+          height: 450px;
+        }
+
+        .input-box-1 {
+          width: 20%;
+        }
+
+        .input-box-2 {
+          width: 38%;
+          margin-right: 15px;
+        }
+
+        .input-box-3 {
+          margin-right: 0;
+          width: 36%;
+        }
+
+        .input-box-4 {
+          margin-right: 15px;
+          width: 55%;
+        }
+
+        .input-box-5 {
+          width: 41%;
+        }
+
+        .input-box-6 {
+          width: 48%;
+        }
+
+        .input-box-7 {
+          width: 48%;
+        }
+
+        .input-box-8 {
+          width: 31%;
+        }
+
+        .input-box-9 {
+          width: 32%;
+          margin-right: 15px;
+        }
+
+        .input-box-10 {
+          width: 31%;
+          margin-right: 0;
+        }
+
+        .input-box-11 {
+          width: 100%;
+          margin-right: 10px;
+        }
+
+        .input-box-12 {
+          width: 48.7%;
+        }
+
+        .input-box-13 {
+          width: 48%;
+        }
+      }
+
+      @media screen and (max-width: 540px) {
+        .section-2-right {
+          margin-top: 70px;
+        }
+
+        .contact-form-container {
+          margin-top: 20px;
+        }
+
+        .contact-form-container .col-lg-6 {
+          width: 100%;
+        }
+
+        .donations-box .col-lg-4 {
+          width: 100%;
+        }
+
+        .input-box-5 {
+          width: 42%;
+        }
+
+        .input-box-7 {
+          width: 49%;
+        }
+
+        .input-box-11 {
+          margin-right: 0;
+        }
+
+        .about-img {
+          height: 365px;
+        }
+      }
+
+      @media screen and (max-width: 420px) {
+        .input-box-2,
+        .input-box-3,
+        .input-box-4,
+        .input-box-5,
+        .input-box-6,
+        .input-box-7,
+        .input-box-8,
+        .input-box-9,
+        .input-box-10,
+        .input-box-11,
+        .input-box-12,
+        .input-box-13 {
+          width: 100%;
+          margin-right: 0;
+        }
+
+        .about-img {
+          height: 305px;
+        }
+
+        .input-box-1 {
+          width: 50%;
+        }
+      }
+
+      @media screen and (max-width: 360px) {
+        .contact-form-container {
+          margin-top: 0;
+        }
+
+        .contact-form-container .col-lg-6 {
+          width: 100%;
+        }
+
+        .section-2-right .about-text {
+          margin-top: 0;
+        }
+
+        .contact-form-container .col-lg-6 {
+          padding-right: 15px !important;
+        }
+
+        .section-2-right {
+          margin-top: 10px;
+        }
+      }
+
+      #myModal .modal-dialog {
+        width: 100vw;
+        max-width: unset;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      /* #myModal .modal-content {
+            width: 700px;
+        } */
+
+      ul.para-1-list {
+        list-style: none;
+      }
+
+      ul.para-1-list li:before {
+        content: "\2022 ";
+        margin-left: -20px;
+        color: yellowgreen;
+        font-size: 35px;
+        position: absolute;
+      }
+    </style>
+  </head>
+
+  <body class="form-theme columns-two move-additional-information-no">
+    <a
+      style="display: none"
+      id="modal-btn"
+      data-toggle="modal"
+      data-target="#myModal"
+    ></a>
+    <!-- <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal-content">
+          <div class="modal-body">
+            <img src="img/Lightbox.png" width="100%" />
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <header class="theme-header">
+      <div class="header-container">
+        <div>
+          <nav
+            class="
+              navbar navbar-expand-lg
+              d-flex
+              flex-column
+              align-items-start
+              pb-0
+            "
+          >
+            <a class="navbar-brand" href="#">
+              <img src="img/White_Logo.png" />
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="main-content">
+      <article class="article-content">
+        <section class="form-content">
+          <div class="about-text">
+            <h5 class="para-1-title">Fill 2022 with Happy Endings!</h5>
+            <p class="para-1-text">
+              Thank you for helping to start 2022 strong, ready to care for thousands of local animals in need. Because of you, a neglected dog will know the joy of chasing a tennis ball, a homeless cat will get a sunny spot on the rug, and a horse will run free through a green field. These happy endings wouldn’t be possible without you!
+            </p>
+
+            
+            
+          </div>
+          <div>
+            <h5 style="font-weight: 600">FOR YOUR RECORDS:</h5>
+            <p style="margin: 3px 0 0 0">Amount of Donation:</p>
+            <p style="margin: 3px 0 0 0">Date of Donation:</p>
+            <p style="margin: 3px 0 0 0">Tax-deductible Donation Amount:</p>
+            <p style="margin: 3px 0 0 0">
+              No goods or services were provided in exchange for this
+              contribution.
+            </p>
+          </div>
+        </section>
+        <aside class="secondary-content">
+          <div class="about-img mb-3">
+            <img src="img/Dog_1.png" class="w-100" />
+          </div>
+          <div class="about-text">
+            
+            
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+              <div
+                style="
+                  margin:auto;
+                  display: inline-block;
+                "
+              >
+              <hr style="border-top: 2px solid #e6e6e6; margin-bottom: 5px" />
+              <p style="text-align: center; margin-top: 15px;">
+                <strong>Invite your friends to save lives, too!</strong></p>
+              </div>
+              <div style="display: inline-block;">
+                <ul class="social-link mb-3">
+                  <li>
+                    <a
+                      href="https://www.facebook.com/sharer/sharer.php?u=https://pursuant8.com/hspca/2022/jan/hspca12675/landing/landingpage.html"
+                      target="_blank"
+                      id="share-1"
+                    >
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://twitter.com/intent/tweet?url=https://pursuant8.com/hspca/2022/jan/hspca12675/landing/landingpage.html&text=Help fill 2022 with happy endings for pets in need! Join me in supporting @HoustonSPCA to send rescue, pursue justice for victims of animal cruelty, and find loving new homes.&hashtags=AdoptDontShop,HappyEnding"
+                      target="_blank"
+                      >
+                      <i class="fab fa-twitter"></i
+                    ></a>
+                  </li>
+                </ul>
+            </div>
+            </div>
+          </div>
+        </aside>
+      </article>
+    </main>
+    <footer class="theme-footer">
+      <div class="footer footer-container">
+        <!-- <div class="footer-logo">
+            <img
+               src="https://nvlupin.blob.core.windows.net/images/van/EA/EA005/1/77954/images/themes/houston-spca-logo-black.svg" />
+         </div> -->
+        <!-- <p>Copyright 2021 Houston SPCA. All Rights Reserved.</p>
+         <p class="menu-link">
+            <a href="#">Home</a>&nbsp;|&nbsp;
+            <a href="#">News</a>&nbsp;|&nbsp;
+            <a href="#">Events</a>&nbsp;|&nbsp;
+            <a href="#">Privacy Policy</a>&nbsp;|&nbsp;
+            <a href="#" id="menu-item-4">Contact</a>
+         </p> -->
+        <div class="footer-logo">
+          <div class="left">
+            <img src="img/White_Logo.png" />
+          </div>
+        </div>
+        <div style="font-size: 14px; color: white">
+          Copyright 2022 Houston SPCA. All Rights Reserved.
+        </div>
+        <div style="font-size: 14px; color: white; margin-bottom: 20px">
+          Home | News | Events | Privacy Policy | Contact
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://nvlupin.blob.core.windows.net/images/van/EA/EA005/1/77954/images/themes/everyaction-form-scripts.js?1"></script>
+    <script
+      type="text/javascript"
+      src="//d3rse9xjbp8270.cloudfront.net/assets/js/intl-tel.input.utils.js"
+    ></script>
+    <script>
+      document.querySelector("#modal-btn").click();
+    </script>
+    <script>
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+    </script>
+    <script>
+      var exhortation = document.querySelector(".exhortation");
+      var monthly = document.querySelector(".toggle-link.recurring");
+      var oneTime = document.querySelector(".toggle-link.onetime");
+
+      exhortation.style.display = "none";
+
+      monthly.classList.add("active");
+
+      function handleMsg(value) {
+        if (value == "monthly") {
+          monthly.classList.add("active");
+          oneTime.classList.remove("active");
+          exhortation.style.display = "none";
+        } else if (value == "one") {
+          oneTime.classList.add("active");
+          monthly.classList.remove("active");
+          exhortation.style.display = "block";
+        }
+      }
+    </script>
+    <script>
+      var amount1 = document.querySelector("#d-btn1");
+      var amount2 = document.querySelector("#d-btn2");
+      var amount3 = document.querySelector("#d-btn3");
+      var amount4 = document.querySelector("#d-btn4");
+
+      amount1.classList.add("active");
+
+      function selectAmount(value) {
+        if (value == 1) {
+          amount1.classList.add("active");
+          amount2.classList.remove("active");
+          amount3.classList.remove("active");
+          amount4.classList.remove("active");
+        } else if (value == 2) {
+          amount2.classList.add("active");
+          amount1.classList.remove("active");
+          amount3.classList.remove("active");
+          amount4.classList.remove("active");
+        } else if (value == 3) {
+          amount3.classList.add("active");
+          amount2.classList.remove("active");
+          amount1.classList.remove("active");
+          amount4.classList.remove("active");
+        } else if (value == 4) {
+          amount4.classList.add("active");
+          amount2.classList.remove("active");
+          amount3.classList.remove("active");
+          amount1.classList.remove("active");
+        }
+      }
+    </script>
+  </body>
+</html>

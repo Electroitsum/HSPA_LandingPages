@@ -1,0 +1,1799 @@
+<?php
+if(isset($_POST["submit"])){
+// Checking For Blank Fields..
+if($_POST["vname"]==""||$_POST["vemail"]==""||$_POST["sub"]==""||$_POST["msg"]==""){
+echo "Fill All Fields..";
+}else{
+// Check if the "Sender's Email" input field is filled out
+$email=$_POST['vemail'];
+// Sanitize E-mail Address
+$email =filter_var($email, FILTER_SANITIZE_EMAIL);
+// Validate E-mail Address
+$email= filter_var($email, FILTER_VALIDATE_EMAIL);
+if (!$email){
+echo "Invalid Sender's Email";
+}
+else{
+$subject = $_POST['sub'];
+$message = $_POST['msg'];
+$headers = 'From:'. $email2 . "rn"; // Sender's Email
+$headers .= 'Cc:'. $email2 . "rn"; // Carbon copy to Sender
+// Message lines should not exceed 70 characters (PHP rule), so wrap it
+$message = wordwrap($message, 70);
+// Send Mail By PHP Mail Function
+mail("recievers_mail_id@xyz.com", $subject, $message, $headers);
+echo "Your mail has been sent successfuly ! Thank you for your feedback";
+}
+}
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta property="og:title" content="Give Happy Endings" />
+    <!-- <meta property="twitter:title" content="Your gift doubles!" /> -->
+    <meta
+      property="og:description"
+      content="Give now to help more homeless pets find their happy ending in 2022!"
+    />
+    <!-- <meta
+      property="twitter:description"
+      content="Through a generous match, you can help twice as many animals with a single gift as long as
+   you give by December 31!"
+    /> -->
+    <title>Donation Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://use.typekit.net/cir6fjy.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+    <link
+      href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,600,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://nvlupin.blob.core.windows.net/images/van/EA/EA005/1/77954/images/themes/everyaction-form-styles.css?5"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+
+    <style type="text/css">
+      @font-face {
+        font-family: FranklinGothicEFHeavyRegular;
+        src: url("fonts/FranklinGothicEFHeavyRegular.otf");
+      }
+
+      @font-face {
+        font-family: ITCFranklinGothicStd-Demi;
+        src: url("fonts/ITCFranklinGothicStd-Demi.otf");
+      }
+
+      @font-face {
+        font-family: cambriab;
+        src: url("fonts/cambriab.ttf");
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        /* background-color: #f9f9f9; */
+      }
+
+      p {
+        text-align: justify;
+        font-size: 14px !important;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .header {
+        display: block;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .navbar-brand {
+        padding: 0;
+        margin: 0;
+        margin-top: 12px;
+      }
+
+      .navbar-brand img {
+        height: 85px;
+        position: absolute;
+        /* margin-bottom: 40px; */
+        margin-left: 30px;
+      }
+
+      .header-container .navbar {
+        position: relative;
+        background-image: url(img/ft-pattern.png);
+        color: #fff;
+        padding: 0;
+        height: 110px;
+      }
+
+      .header .navbar > * {
+        position: relative;
+      }
+
+      .header-container .navbar:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /* background-color: rgb(127 189 66 / 90%); */
+        background-image: url("img/VectorSmartObject.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .header-border {
+        border-bottom: 2px solid #e6e6e6;
+        width: 100%;
+      }
+
+      .content .pattern-block img {
+        text-align: center;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .para-1-title {
+        font-size: 30px;
+        /* font-family: cambriab; */
+        /* font-family: Arial; */
+        font-weight: 600;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .para-1-text {
+        font-size: 18px !important;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .para-1-text:last-of-type {
+        margin-bottom: 40px;
+      }
+
+      .about-img {
+        height: 300px;
+        overflow: hidden;
+      }
+
+      .content h5 {
+        /* text-transform: uppercase;
+             letter-spacing: 1px;
+             font-weight: bolder; */
+      }
+
+      .section-2-left {
+        margin-top: -50px;
+      }
+
+      .content .pattern-block p {
+        text-align: center;
+      }
+
+      .gift-text {
+        color: #333;
+        font-size: 1.25em !important;
+        font-weight: 600;
+        line-height: 1.2em;
+        margin: 20px 0;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .font10 {
+        font-size: 10px !important;
+      }
+
+      .font-FG {
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .font18 {
+        font-size: 18px;
+      }
+
+      .donations-box .form-group {
+        border-radius: 2px;
+        color: #fff;
+        float: none !important;
+        font-size: 20px;
+        font-weight: 600;
+        height: 50px;
+        line-height: 40px;
+        margin: 0 15px 20px 0;
+        /* padding: 5px 20px; */
+        transition: all 0.5s ease-in-out;
+        width: calc((100% / 4) - 14px);
+        position: relative;
+      }
+
+      #btn-box-4 {
+        margin-right: 0;
+      }
+
+      #btn-box-6 {
+        width: calc(100% - (100% / 4) - 14px);
+        margin-right: 0;
+      }
+
+      .donations-box .form-group a {
+        font-size: 20px;
+        font-weight: 600;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .donations-box .col-lg-4 {
+        padding-right: 5px;
+        padding-left: 0px;
+        flex: none;
+        width: 25%;
+      }
+
+      .donations-box .col-lg-6 {
+        padding-left: 0;
+        padding-right: 5px;
+      }
+
+      .donations-box .col-lg-8 input {
+        border-radius: 0;
+        border-color: #0156ba;
+        border-width: 2px;
+        padding: 5px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .donations-box {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .about-text .font-FG {
+        font-size: 30px;
+        font-family: Arial;
+        font-weight: 600;
+        margin-bottom: 25px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .contact-form .form-group {
+        margin-bottom: 10px;
+      }
+
+      .contact-form small {
+        color: #a2abb4;
+      }
+
+      .contact-form input,
+      .contact-form select {
+        /* background-color: #f2f6fb; */
+        height: 46px;
+      }
+
+      .input-box-1 {
+        width: 180px;
+        margin-right: 15px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-2 {
+        width: 275px;
+        margin-right: 0px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-3 {
+        width: 220px;
+        margin-right: 15px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-4 {
+        width: 235px;
+        margin-right: 0px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-5 {
+        width: 100%;
+        margin-right: 10px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-6 {
+        width: 220px;
+        margin-right: 15px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-7 {
+        width: 235px;
+        margin-right: 0px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-8 {
+        width: 220px;
+        margin-right: 15px;
+        font-family: franklin-gothic-urw,sans-serif;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-9 {
+        width: 235px;
+        margin-right: 0px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-10 {
+        width: 220px;
+        margin-right: 15px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-11 {
+        width: 235px;
+        margin-right: 0px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-12 {
+        width: 220px;
+        margin-right: 15px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .input-box-13 {
+        width: 235px;
+        margin-right: 0px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .social-link {
+        padding: unset;
+        margin: unset;
+        list-style: none;
+        text-align: center;
+      }
+
+      .social-link li {
+        display: inline-block;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .social-link li a {
+        color: #ffffff;
+        background-color: #026785;
+        display: block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 100%;
+        margin: 0 5px;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      input[id="phone"] {
+        width: 100%;
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da;
+      }
+
+      .contact-form-container {
+        margin-top: -95px;
+      }
+
+      .footer {
+        background: #141f49;
+        height: 130 px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: rgb(0, 0, 0);
+        /* padding: 30px 30px; */
+        /* display: flex; */
+        /* flex-direction: column; */
+        /* flex-wrap: nowrap; */
+        /* align-content: flex-end; */
+        font-size: 12px;
+      }
+
+      .footer > * {
+        position: relative;
+      }
+
+      .footer:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .footer .footer-logo .right p {
+        text-align: unset;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        border-left: 3px solid hotpink;
+        padding-left: 15px;
+      }
+
+      .footer .footer-logo img {
+        margin-bottom: 10px;
+        /* height: 65px; */
+        margin-top: 20px;
+      }
+
+      footer.theme-footer p {
+        padding: 0;
+      }
+
+      .footer p a {
+        color: rgb(0, 0, 0);
+      }
+
+      .footer .menu-link {
+        display: block;
+        font-size: 0.9375em;
+        line-height: 18px;
+        margin: 0 0 10px;
+        padding: 0 0px 0 0;
+        text-align: right;
+      }
+
+      .menu-link li:not(#menu-item-4) {
+        padding-left: 10px;
+        padding-right: 10px;
+        border-right: 1px solid rgb(0, 0, 0);
+      }
+
+      .footer .menu-link li a {
+        color: #0156ba;
+        font-size: 15px;
+      }
+
+      /* @media screen and (min-width: 320px) and (max-width: 767px) {
+         .header .collapse {
+            display: block;
+            flex-basis: unset;
+            flex-grow: unset;
+            align-items: unset;
+         }
+      } */
+
+      .btn-primary {
+        color: #fff;
+        background-color: #141f49;
+        border-color: #141f49;
+      }
+
+      .donation-box {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+
+      .left-side-box {
+        font-size: 12px !important;
+        font-family: "Libre Franklin", sans-serif;
+        padding-right: 20px;
+        width: 50%;
+        color: #495057;
+        line-height: 1.4;
+        margin-bottom: 0;
+      }
+
+      .donation-box p a {
+        font-size: 10px;
+      }
+
+      .fast-button {
+        display: flex;
+        align-items: center;
+      }
+
+      .btn-outline-secondary {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding: 0 5px;
+        color: #007bff;
+      }
+
+      .fa-plus-circle {
+        margin: 5px 2px;
+      }
+
+      .lock-paragraph {
+        font-size: 12px !important;
+        font-weight: 400;
+        line-height: 1.5em;
+        margin: 0px 0 40px;
+        padding: 0px 0 0 30px;
+        position: relative;
+      }
+
+      .toggle-container .form-check-label {
+        font-size: 15px;
+        line-height: 24px;
+        margin: 0;
+        padding-left: 34px;
+        text-transform: none;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      .form-check-inline {
+        align-items: flex-start;
+      }
+
+      .form-check-inline .form-check-input {
+        margin-top: 6px;
+      }
+
+      #memory {
+        color: black;
+        padding-left: 0px;
+      }
+
+      #d-btn1,
+      #d-btn2,
+      #d-btn3,
+      #d-btn4,
+      #d-btn5 {
+        background: #026785;
+        border: 0px;
+        border-radius: 0px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #d-btn1.active,
+      #d-btn2.active,
+      #d-btn3.active,
+      #d-btn4.active,
+      #d-btn5.active {
+        background: #FFC82A;
+        border: 0px;
+      }
+
+      /* #menu-item-4{
+            border-right: 0px !important;
+         } */
+
+      #form-btn {
+        background-color: #026785;
+        border: 0;
+        border-radius: 2px;
+        color: #fff;
+        display: block;
+        float: none;
+        font-size: 1.125em;
+        font-weight: 600;
+        height: 50px;
+        letter-spacing: 1.5px;
+        line-height: 20px;
+        margin: 0;
+        padding: 0 30px;
+        text-transform: uppercase;
+        white-space: normal;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .font12 {
+        font-size: 12px !important;
+      }
+
+      .contact-form label {
+        font-size: 16px;
+        white-space: nowrap;
+        font-weight: 400;
+        margin-bottom: 2px;
+      }
+
+      .contact-form input {
+        /* background-color: ; */
+      }
+
+      .donations-box input {
+        border-color: #026785;
+        border-radius: 0;
+        border-width: 2px;
+        padding-left: 20px;
+        position: relative;
+        padding-bottom: 5px;
+        font-weight: 600;
+        height: 100%;
+        font-size: 20px;
+      }
+
+      /* .donations-box input::before {
+         content: '$';
+         position: absolute;
+         left: 10px;
+         font-size: 16px;
+         color: #0156ba;
+      } */
+
+      .fastAction .fa-cta {
+        line-height: 30px;
+        display: block;
+        white-space: nowrap;
+        float: right;
+        display: flex;
+        align-items: center;
+      }
+
+      .fastAction .profile-link {
+        background-color: white;
+        color: #fff;
+        font-weight: bold;
+        padding: 4px 4px 0 1px;
+        position: relative;
+        text-decoration: none;
+        height: 30px;
+        width: 110px;
+        display: inline-block;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        position: relative;
+        padding: 4px;
+        vertical-align: bottom;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .fastAction .profile-link .profile-link-fa-image {
+        position: absolute;
+        width: 94px;
+        height: 15px;
+        top: 6px;
+        left: 8px;
+      }
+
+      .donation-text {
+        display: block;
+        color: #333;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.2em;
+        margin: 20px 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      .toggle-container {
+        font-family: "Libre Franklin", sans-serif;
+      }
+
+      .toggle-container div.toggle-links-block {
+        display: flex;
+        height: 24px;
+        margin: 0 0 10px;
+      }
+
+      .toggle-container a.toggle-link.active:before {
+        background: #026785;
+        border: 1px solid #026785;
+      }
+
+      .toggle-container a.toggle-link:before {
+        border: 1px solid #999;
+        border-radius: 100%;
+        content: "";
+        display: block;
+        height: 24px;
+        left: 0;
+        position: absolute;
+        width: 24px;
+      }
+
+      .toggle-container a.toggle-link {
+        border-radius: 15px;
+        color: #333;
+        display: block;
+        line-height: 1.5em;
+        height: 24px;
+        padding: 0 15px 0 30px;
+        position: relative;
+      }
+
+      .toggle-container a.toggle-link:hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .form-container .contact-title {
+        color: #333;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.2em;
+        margin: 0;
+        padding: 10px 10px 10px 0;
+        /* margin-bottom: 10px; */
+        display: inline-block;
+      }
+
+      aside.secondary-content .fa-lock {
+        top: 5px;
+      }
+
+      .fastAction .circle {
+        display: inline-block;
+        background: #878787;
+        color: #fff;
+        font-size: 13px;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        border-radius: 16px;
+        font-family: monospace;
+        font-weight: bold;
+        text-decoration: none;
+        margin-left: 4px;
+      }
+
+      .exhortation {
+        background-image: url(https://nvlupin.blob.core.windows.net/images/van/EA/EA005/1/77954/images/themes/green-arrow.svg);
+        background-size: 30px 40px;
+        background-position: 0px 0px;
+        background-repeat: no-repeat;
+        color: #81bc00;
+        font-size: 0.875em;
+        font-weight: 700;
+        line-height: 20px;
+        margin: 10px 0;
+        min-height: 40px;
+        padding: 0 0 0 40px;
+      }
+
+      @media screen and (max-width: 1024px) {
+        .contact-form-container {
+          margin-top: -50px;
+        }
+
+        .about-img {
+          height: 260px;
+        }
+
+        .section-2-right .about-text {
+          margin-top: -50px;
+        }
+
+        .contact-form-container .col-lg-6 {
+          width: 66%;
+          max-width: unset;
+          flex: none;
+        }
+
+        .section-2-left {
+          margin-top: 0;
+        }
+
+        .donations-box .col-lg-4 {
+          width: 33%;
+        }
+
+        .input-box-1 {
+          width: 160px;
+        }
+
+        .input-box-3 {
+          width: 200px;
+        }
+
+        .input-box-5 {
+          margin-right: 0;
+        }
+
+        .input-box-6,
+        .input-box-8,
+        .input-box-10,
+        .input-box-12 {
+          width: 200px;
+        }
+      }
+
+      @media screen and (max-width: 945px) {
+        /* #btn-box-5 {
+            width: calc(100% - 245px);
+         } */
+        .about-img {
+          height: 450px;
+        }
+
+        .input-box-1 {
+          width: 20%;
+        }
+
+        .input-box-2 {
+          width: 38%;
+          margin-right: 15px;
+        }
+
+        .input-box-3 {
+          margin-right: 0;
+          width: 36%;
+        }
+
+        .input-box-4 {
+          margin-right: 15px;
+          width: 55%;
+        }
+
+        .input-box-5 {
+          width: 41%;
+        }
+
+        .input-box-6 {
+          width: 48%;
+        }
+
+        .input-box-7 {
+          width: 48%;
+        }
+
+        .input-box-8 {
+          width: 31%;
+        }
+
+        .input-box-9 {
+          width: 32%;
+          margin-right: 15px;
+        }
+
+        .input-box-10 {
+          width: 31%;
+          margin-right: 0;
+        }
+
+        .input-box-11 {
+          width: 100%;
+          margin-right: 10px;
+        }
+
+        .input-box-12 {
+          width: 48.7%;
+        }
+
+        .input-box-13 {
+          width: 48%;
+        }
+      }
+
+      @media screen and (max-width: 540px) {
+        .section-2-right {
+          margin-top: 70px;
+        }
+
+        .contact-form-container {
+          margin-top: 20px;
+        }
+
+        .contact-form-container .col-lg-6 {
+          width: 100%;
+        }
+
+        .donations-box .col-lg-4 {
+          width: 100%;
+        }
+
+        .input-box-5 {
+          width: 42%;
+        }
+
+        .input-box-7 {
+          width: 49%;
+        }
+
+        .input-box-11 {
+          margin-right: 0;
+        }
+
+        .about-img {
+          height: 365px;
+        }
+      }
+
+      @media screen and (max-width: 420px) {
+        .input-box-2,
+        .input-box-3,
+        .input-box-4,
+        .input-box-5,
+        .input-box-6,
+        .input-box-7,
+        .input-box-8,
+        .input-box-9,
+        .input-box-10,
+        .input-box-11,
+        .input-box-12,
+        .input-box-13 {
+          width: 100%;
+          margin-right: 0;
+        }
+
+        .about-img {
+          height: 305px;
+        }
+
+        .input-box-1 {
+          width: 50%;
+        }
+      }
+
+      @media screen and (max-width: 360px) {
+        .contact-form-container {
+          margin-top: 0;
+        }
+
+        .contact-form-container .col-lg-6 {
+          width: 100%;
+        }
+
+        .section-2-right .about-text {
+          margin-top: 0;
+        }
+
+        .contact-form-container .col-lg-6 {
+          padding-right: 15px !important;
+        }
+
+        .section-2-right {
+          margin-top: 10px;
+        }
+      }
+
+      #myModal .modal-dialog {
+        width: 100vw;
+        max-width: unset;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      /* #myModal .modal-content {
+            width: 700px;
+        } */
+
+      ul.para-1-list {
+        list-style: none;
+        font-family: franklin-gothic-urw,sans-serif;
+      }
+
+      ul.para-1-list li:before {
+        content: "\2022 ";
+        margin-left: -20px;
+        color: black;
+        font-size: 35px;
+        position: absolute;
+      }
+    </style>
+  </head>
+
+  <body class="form-theme columns-two move-additional-information-no">
+    <a
+      style="display: none"
+      id="modal-btn"
+      data-toggle="modal"
+      data-target="#myModal"
+    ></a>
+    <!-- <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal-content">
+          <div class="modal-body">
+            <img src="img/Lightbox.png" width="100%" />
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <header class="theme-header">
+      <div class="header-container">
+        <div>
+          <nav
+            class="
+              navbar navbar-expand-lg
+              d-flex
+              flex-column
+              align-items-start
+              pb-0
+            "
+          >
+            <a class="navbar-brand" href="#">
+              <img src="img/White_Logo.png" />
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="main-content">
+      <article class="article-content">
+        <section class="form-content">
+          <div class="about-text">
+            <h5 class="para-1-title">Fill 2022 with Happy Endings!</h5>
+            <p class="para-1-text">
+              When you renew your support for 2022, you'll be a part of
+              thousands of happy endings for homeless pets, horses, farm
+              animals, and wildlife in crisis. Throughout the year:
+            </p>
+
+            <ul class="para-1-list">
+              <li>
+                We'll receive calls every day about injured, abandoned, and
+                abused animals in urgent need of rescue.
+              </li>
+              <li>
+                Our veterinarians will perform lifesaving procedures and routine
+                checkups.
+              </li>
+              <li>
+                Our cruelty investigators will gather evidence and seek justice.
+              </li>
+              <li>
+                And thousands of pets will eagerly scan the faces of our
+                visitors, wondering if <i>this</i> person will be the one to
+                take them home.
+              </li>
+            </ul>
+            <p class="para-1-text">
+              Make a one-time gift, or check the "monthly" box to save lives all
+              year long. Either way, thank you for showing how much you care
+              about our community's animals!
+            </p>
+          </div>
+          <div class="about-text">
+            <hr style="border-top: 2px solid #e6e6e6; margin-bottom: 5px" />
+            <div class="donation-box fastAction">
+              <p class="left-side-box" style="font-family: franklin-gothic-urw,sans-serif;">
+                Take future action with a single click <a href="#">Log In</a> or
+                <a href="#">Sign Up</a> for <em>Fast</em><strong>Action</strong>
+              </p>
+              <!-- <p class="fast-button">
+                        <a href="#" class="btn btn-outline-secondary d-flex align-items-center"><i class="fas fa-cog"></i>&nbsp;
+                           <em>fast</em><strong>Action</strong></a>&nbsp;<i class="fas fa-question-circle"
+                           style="color: #007bff;"></i>
+                     </p> -->
+              <span class="fa-cta">
+                <a
+                  href="#fastaction-login"
+                  class="profile-link"
+                  aria-label="FastAction"
+                >
+                  <img
+                    class="profile-link-fa-image"
+                    src="img/fast-action.svg"
+                  />
+                </a>
+                <span
+                  ><a
+                    href="https://fastaction.ngpvan.com##whats-this"
+                    class="circle"
+                    id="fastaction-whatsthis"
+                    data-popup="true"
+                    data-popup-width="515"
+                    data-popup-height="540"
+                    target="_blank"
+                    >?</a
+                  ></span
+                >
+              </span>
+            </div>
+            <p class="gift-text" style="font-family: franklin-gothic-urw,sans-serif;">I would like to give a gift of...</p>
+            <span class="donation-text" style="font-family: franklin-gothic-urw,sans-serif;">DONATION TYPE</span>
+
+            <!-- <div class="form-check form-check-inline form-group">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                     value="option1">
+                  <label class="form-check-label" for="inlineRadio1">Every month</label>
+               </div>
+               <div class="form-check form-check-inline form-group">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                     value="option2" checked>
+                  <label class="form-check-label" for="inlineRadio2">Just this once</label>
+               </div> -->
+
+            <div class="toggle-container recurring-on">
+              <div class="toggle-links-block">
+                <a class="toggle-link recurring" onclick="handleMsg('monthly')">
+                  <span class="radio-button-text"style="font-family: franklin-gothic-urw,sans-serif;">Every month</span>
+                </a>
+                <a class="toggle-link onetime" onclick="handleMsg('one')">
+                  <span class="radio-button-text" style="font-family: franklin-gothic-urw,sans-serif;">Just this once</span>
+                </a>
+              </div>
+              <p class="exhortation" style="display: none; font-family: franklin-gothic-urw,sans-serif;">
+                Your <u>monthly support</u> prepares us for every challenge and
+                lets us plan for the future.
+              </p>
+            </div>
+
+            <span class="donation-text" style="font-family: franklin-gothic-urw,sans-serif;">DONATION AMOUNT</span>
+            <div class="row donations-box">
+              <div class="form-group" id="btn-box-1">
+                <a
+                  class="btn btn-primary btn-sm btn-block"
+                  id="d-btn1"
+                  onclick="selectAmount(1)"
+                  >$25</a
+                >
+              </div>
+              <div class="form-group" id="btn-box-2">
+                <a
+                  class="btn btn-primary btn-sm btn-block"
+                  id="d-btn2"
+                  onclick="selectAmount(2)"
+                  >$50</a
+                >
+              </div>
+              <div class="form-group" id="btn-box-3">
+                <a
+                  class="btn btn-primary btn-sm btn-block"
+                  id="d-btn3"
+                  onclick="selectAmount(3)"
+                  >$75</a
+                >
+              </div>
+              <div class="form-group" id="btn-box-4">
+                <a
+                  class="btn btn-primary btn-sm btn-block"
+                  id="d-btn4"
+                  onclick="selectAmount(4)"
+                  >$100</a
+                >
+              </div>
+            </div>
+            <div class="row donations-box">
+              <div class="form-group" id="btn-box-5">
+                <a
+                  class="btn btn-success btn-sm btn-block"
+                  id="d-btn5"
+                  onclick="selectAmount(5)"
+                  >$250</a
+                >
+              </div>
+              <div class="form-group" id="btn-box-6">
+                <span
+                  class="dollar-text"
+                  style="
+                    color: #026785;
+                    position: absolute;
+                    z-index: 2;
+                    font-size: 20px;
+                    font-weight: 600;
+                    left: 5px;
+                    top: 5px;
+                  "
+                  >$</span
+                >
+                <input
+                  type="text"
+                  name=""
+                  placeholder="0.00"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="form-check form-check-inline form-group">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="inlineRadio2"
+                value="option2"
+              />
+              <label class="form-check-label" for="inlineRadio2" id="memory"
+              style="font-family: franklin-gothic-urw,sans-serif;">I'd like to make this contribution in honor or in memory of
+                someone.</label
+              >
+            </div>
+          </div>
+          <div class="about-text form-container">
+            <span class="contact-title" style="font-family: franklin-gothic-urw,sans-serif;">Contact Information</span>
+            <form class="contact-form">
+              <div class="d-flex flex-wrap">
+                <div class="input-box-1">
+                  <div class="form-group">
+                    <label>Prefix <small>(optional)</small></label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="input-box-2">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="input-box-3">
+                  <div class="form-group">
+                    <label>Middle Name <small>(optional)</small></label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="input-box-4">
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="input-box-5">
+                  <div class="form-group">
+                    <label>Suffix <small>(optional)</small></label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="input-box-6">
+                  <div class="form-group">
+                    <label>Street Address</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="input-box-7">
+                  <div class="form-group">
+                    <label>Address Line 2 <small>(optional)</small></label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="input-box-8">
+                  <div class="form-group">
+                    <label>Country <small>(optional)</small></label>
+                    <select class="form-control">
+                      <option value="Afganistan">Afghanistan</option>
+                      <option value="Albania">Albania</option>
+                      <option value="Algeria">Algeria</option>
+                      <option value="American Samoa">American Samoa</option>
+                      <option value="Andorra">Andorra</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Antigua & Barbuda">
+                        Antigua & Barbuda
+                      </option>
+                      <option value="Argentina">Argentina</option>
+                      <option value="Armenia">Armenia</option>
+                      <option value="Aruba">Aruba</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Austria">Austria</option>
+                      <option value="Azerbaijan">Azerbaijan</option>
+                      <option value="Bahamas">Bahamas</option>
+                      <option value="Bahrain">Bahrain</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="Barbados">Barbados</option>
+                      <option value="Belarus">Belarus</option>
+                      <option value="Belgium">Belgium</option>
+                      <option value="Belize">Belize</option>
+                      <option value="Benin">Benin</option>
+                      <option value="Bermuda">Bermuda</option>
+                      <option value="Bhutan">Bhutan</option>
+                      <option value="Bolivia">Bolivia</option>
+                      <option value="Bonaire">Bonaire</option>
+                      <option value="Bosnia & Herzegovina">
+                        Bosnia & Herzegovina
+                      </option>
+                      <option value="Botswana">Botswana</option>
+                      <option value="Brazil">Brazil</option>
+                      <option value="British Indian Ocean Ter">
+                        British Indian Ocean Ter
+                      </option>
+                      <option value="Brunei">Brunei</option>
+                      <option value="Bulgaria">Bulgaria</option>
+                      <option value="Burkina Faso">Burkina Faso</option>
+                      <option value="Burundi">Burundi</option>
+                      <option value="Cambodia">Cambodia</option>
+                      <option value="Cameroon">Cameroon</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Canary Islands">Canary Islands</option>
+                      <option value="Cape Verde">Cape Verde</option>
+                      <option value="Cayman Islands">Cayman Islands</option>
+                      <option value="Central African Republic">
+                        Central African Republic
+                      </option>
+                      <option value="Chad">Chad</option>
+                      <option value="Channel Islands">Channel Islands</option>
+                      <option value="Chile">Chile</option>
+                      <option value="China">China</option>
+                      <option value="Christmas Island">Christmas Island</option>
+                      <option value="Cocos Island">Cocos Island</option>
+                      <option value="Colombia">Colombia</option>
+                      <option value="Comoros">Comoros</option>
+                      <option value="Congo">Congo</option>
+                      <option value="Cook Islands">Cook Islands</option>
+                      <option value="Costa Rica">Costa Rica</option>
+                      <option value="Cote DIvoire">Cote DIvoire</option>
+                      <option value="Croatia">Croatia</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Curaco">Curacao</option>
+                      <option value="Cyprus">Cyprus</option>
+                      <option value="Czech Republic">Czech Republic</option>
+                      <option value="Denmark">Denmark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominica">Dominica</option>
+                      <option value="Dominican Republic">
+                        Dominican Republic
+                      </option>
+                      <option value="East Timor">East Timor</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="Egypt">Egypt</option>
+                      <option value="El Salvador">El Salvador</option>
+                      <option value="Equatorial Guinea">
+                        Equatorial Guinea
+                      </option>
+                      <option value="Eritrea">Eritrea</option>
+                      <option value="Estonia">Estonia</option>
+                      <option value="Ethiopia">Ethiopia</option>
+                      <option value="Falkland Islands">Falkland Islands</option>
+                      <option value="Faroe Islands">Faroe Islands</option>
+                      <option value="Fiji">Fiji</option>
+                      <option value="Finland">Finland</option>
+                      <option value="France">France</option>
+                      <option value="French Guiana">French Guiana</option>
+                      <option value="French Polynesia">French Polynesia</option>
+                      <option value="French Southern Ter">
+                        French Southern Ter
+                      </option>
+                      <option value="Gabon">Gabon</option>
+                      <option value="Gambia">Gambia</option>
+                      <option value="Georgia">Georgia</option>
+                      <option value="Germany">Germany</option>
+                      <option value="Ghana">Ghana</option>
+                      <option value="Gibraltar">Gibraltar</option>
+                      <option value="Great Britain">Great Britain</option>
+                      <option value="Greece">Greece</option>
+                      <option value="Greenland">Greenland</option>
+                      <option value="Grenada">Grenada</option>
+                      <option value="Guadeloupe">Guadeloupe</option>
+                      <option value="Guam">Guam</option>
+                      <option value="Guatemala">Guatemala</option>
+                      <option value="Guinea">Guinea</option>
+                      <option value="Guyana">Guyana</option>
+                      <option value="Haiti">Haiti</option>
+                      <option value="Hawaii">Hawaii</option>
+                      <option value="Honduras">Honduras</option>
+                      <option value="Hong Kong">Hong Kong</option>
+                      <option value="Hungary">Hungary</option>
+                      <option value="Iceland">Iceland</option>
+                      <option value="Indonesia">Indonesia</option>
+                      <option value="India">India</option>
+                      <option value="Iran">Iran</option>
+                      <option value="Iraq">Iraq</option>
+                      <option value="Ireland">Ireland</option>
+                      <option value="Isle of Man">Isle of Man</option>
+                      <option value="Israel">Israel</option>
+                      <option value="Italy">Italy</option>
+                      <option value="Jamaica">Jamaica</option>
+                      <option value="Japan">Japan</option>
+                      <option value="Jordan">Jordan</option>
+                      <option value="Kazakhstan">Kazakhstan</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Kiribati">Kiribati</option>
+                      <option value="Korea North">Korea North</option>
+                      <option value="Korea Sout">Korea South</option>
+                      <option value="Kuwait">Kuwait</option>
+                      <option value="Kyrgyzstan">Kyrgyzstan</option>
+                      <option value="Laos">Laos</option>
+                      <option value="Latvia">Latvia</option>
+                      <option value="Lebanon">Lebanon</option>
+                      <option value="Lesotho">Lesotho</option>
+                      <option value="Liberia">Liberia</option>
+                      <option value="Libya">Libya</option>
+                      <option value="Liechtenstein">Liechtenstein</option>
+                      <option value="Lithuania">Lithuania</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                      <option value="Macau">Macau</option>
+                      <option value="Macedonia">Macedonia</option>
+                      <option value="Madagascar">Madagascar</option>
+                      <option value="Malaysia">Malaysia</option>
+                      <option value="Malawi">Malawi</option>
+                      <option value="Maldives">Maldives</option>
+                      <option value="Mali">Mali</option>
+                      <option value="Malta">Malta</option>
+                      <option value="Marshall Islands">Marshall Islands</option>
+                      <option value="Martinique">Martinique</option>
+                      <option value="Mauritania">Mauritania</option>
+                      <option value="Mauritius">Mauritius</option>
+                      <option value="Mayotte">Mayotte</option>
+                      <option value="Mexico">Mexico</option>
+                      <option value="Midway Islands">Midway Islands</option>
+                      <option value="Moldova">Moldova</option>
+                      <option value="Monaco">Monaco</option>
+                      <option value="Mongolia">Mongolia</option>
+                      <option value="Montserrat">Montserrat</option>
+                      <option value="Morocco">Morocco</option>
+                      <option value="Mozambique">Mozambique</option>
+                      <option value="Myanmar">Myanmar</option>
+                      <option value="Nambia">Nambia</option>
+                      <option value="Nauru">Nauru</option>
+                      <option value="Nepal">Nepal</option>
+                      <option value="Netherland Antilles">
+                        Netherland Antilles
+                      </option>
+                      <option value="Netherlands">
+                        Netherlands (Holland, Europe)
+                      </option>
+                      <option value="Nevis">Nevis</option>
+                      <option value="New Caledonia">New Caledonia</option>
+                      <option value="New Zealand">New Zealand</option>
+                      <option value="Nicaragua">Nicaragua</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Nigeria">Nigeria</option>
+                      <option value="Niue">Niue</option>
+                      <option value="Norfolk Island">Norfolk Island</option>
+                      <option value="Norway">Norway</option>
+                      <option value="Oman">Oman</option>
+                      <option value="Pakistan">Pakistan</option>
+                      <option value="Palau Island">Palau Island</option>
+                      <option value="Palestine">Palestine</option>
+                      <option value="Panama">Panama</option>
+                      <option value="Papua New Guinea">Papua New Guinea</option>
+                      <option value="Paraguay">Paraguay</option>
+                      <option value="Peru">Peru</option>
+                      <option value="Phillipines">Philippines</option>
+                      <option value="Pitcairn Island">Pitcairn Island</option>
+                      <option value="Poland">Poland</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="Puerto Rico">Puerto Rico</option>
+                      <option value="Qatar">Qatar</option>
+                      <option value="Republic of Montenegro">
+                        Republic of Montenegro
+                      </option>
+                      <option value="Republic of Serbia">
+                        Republic of Serbia
+                      </option>
+                      <option value="Reunion">Reunion</option>
+                      <option value="Romania">Romania</option>
+                      <option value="Russia">Russia</option>
+                      <option value="Rwanda">Rwanda</option>
+                      <option value="St Barthelemy">St Barthelemy</option>
+                      <option value="St Eustatius">St Eustatius</option>
+                      <option value="St Helena">St Helena</option>
+                      <option value="St Kitts-Nevis">St Kitts-Nevis</option>
+                      <option value="St Lucia">St Lucia</option>
+                      <option value="St Maarten">St Maarten</option>
+                      <option value="St Pierre & Miquelon">
+                        St Pierre & Miquelon
+                      </option>
+                      <option value="St Vincent & Grenadines">
+                        St Vincent & Grenadines
+                      </option>
+                      <option value="Saipan">Saipan</option>
+                      <option value="Samoa">Samoa</option>
+                      <option value="Samoa American">Samoa American</option>
+                      <option value="San Marino">San Marino</option>
+                      <option value="Sao Tome & Principe">
+                        Sao Tome & Principe
+                      </option>
+                      <option value="Saudi Arabia">Saudi Arabia</option>
+                      <option value="Senegal">Senegal</option>
+                      <option value="Seychelles">Seychelles</option>
+                      <option value="Sierra Leone">Sierra Leone</option>
+                      <option value="Singapore">Singapore</option>
+                      <option value="Slovakia">Slovakia</option>
+                      <option value="Slovenia">Slovenia</option>
+                      <option value="Solomon Islands">Solomon Islands</option>
+                      <option value="Somalia">Somalia</option>
+                      <option value="South Africa">South Africa</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Sri Lanka">Sri Lanka</option>
+                      <option value="Sudan">Sudan</option>
+                      <option value="Suriname">Suriname</option>
+                      <option value="Swaziland">Swaziland</option>
+                      <option value="Sweden">Sweden</option>
+                      <option value="Switzerland">Switzerland</option>
+                      <option value="Syria">Syria</option>
+                      <option value="Tahiti">Tahiti</option>
+                      <option value="Taiwan">Taiwan</option>
+                      <option value="Tajikistan">Tajikistan</option>
+                      <option value="Tanzania">Tanzania</option>
+                      <option value="Thailand">Thailand</option>
+                      <option value="Togo">Togo</option>
+                      <option value="Tokelau">Tokelau</option>
+                      <option value="Tonga">Tonga</option>
+                      <option value="Trinidad & Tobago">
+                        Trinidad & Tobago
+                      </option>
+                      <option value="Tunisia">Tunisia</option>
+                      <option value="Turkey">Turkey</option>
+                      <option value="Turkmenistan">Turkmenistan</option>
+                      <option value="Turks & Caicos Is">
+                        Turks & Caicos Is
+                      </option>
+                      <option value="Tuvalu">Tuvalu</option>
+                      <option value="Uganda">Uganda</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Ukraine">Ukraine</option>
+                      <option value="United Arab Erimates">
+                        United Arab Emirates
+                      </option>
+                      <option value="United States of America" selected>
+                        United States of America
+                      </option>
+                      <option value="Uraguay">Uruguay</option>
+                      <option value="Uzbekistan">Uzbekistan</option>
+                      <option value="Vanuatu">Vanuatu</option>
+                      <option value="Vatican City State">
+                        Vatican City State
+                      </option>
+                      <option value="Venezuela">Venezuela</option>
+                      <option value="Vietnam">Vietnam</option>
+                      <option value="Virgin Islands (Brit)">
+                        Virgin Islands (Brit)
+                      </option>
+                      <option value="Virgin Islands (USA)">
+                        Virgin Islands (USA)
+                      </option>
+                      <option value="Wake Island">Wake Island</option>
+                      <option value="Wallis & Futana Is">
+                        Wallis & Futana Is
+                      </option>
+                      <option value="Yemen">Yemen</option>
+                      <option value="Zaire">Zaire</option>
+                      <option value="Zambia">Zambia</option>
+                      <option value="Zimbabwe">Zimbabwe</option>
+                      <!-- <option default>America</option>
+                                    <option default>Singapore</option> -->
+                    </select>
+                  </div>
+                </div>
+                <div class="input-box-9">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="input-box-10">
+                  <div class="form-group">
+                    <label>Postal Code</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+                <div class="input-box-11">
+                  <div class="form-group">
+                    <label>State / Province</label>
+                    <input type="text" class="form-control" />
+                    <!-- <select class="form-control">
+                              <option default>-State-</option> -->
+                    <!-- <option default>India</option>
+                                    <option default>America</option>
+                                    <option default>Singapore</option> -->
+                    <!-- </select> -->
+                  </div>
+                </div>
+                <div class="input-box-12">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input
+                      type="text"
+                      placeholder="email@email.com"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="input-box-13">
+                  <div class="form-group">
+                    <label>Home Phone <small>(Optional)</small></label>
+                    <input id="phone" type="tel" name="phone" width="100%" />
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center" style="margin-top: 50px">
+                <!-- <div class="col-lg-4 col-md-4 col-sm-4"> -->
+                  <!-- href="https://act.houstonspca.org/a/jan22informed?utm_source=informed_jan22&utm_medium=dm&utm_campaign=2022_jan_appeal&utm_content=22aam6&utm_term=22AAM6" -->
+                <div class="form-group text-center">
+                  <a
+                    href="https://pursuant8.com/hspca/2022/jan/hspca12675/landing/thankyoupage.html"
+                    class="btn btn-success btn-block"
+                    id="form-btn"
+                    >MAKE MY GIFT</a
+                  >
+                </div>
+                <!-- </div> -->
+              </div>
+            </form>
+          </div>
+        </section>
+        <aside class="secondary-content">
+          <div class="about-img mb-3">
+            <img src="img/Dog_1.png" class="w-100" />
+          </div>
+          <div class="about-text">
+            <h5 class="font-FG">Learning to Be a Puppy</h5>
+            <p class="para-1-text mb-5">
+              When 4-month-old Niklaus came to the Houston SPCA, he was
+              suffering from mange and so much neglect he didn't even know how
+              to be a puppy. Thanks to animal lovers like you, his foster family
+              gave him medicated baths for the mange and showed him the joys of
+              puppyhood&#8211;dog toys and snuggles. Soon he was ready to fill a new
+              family's home with love and laughter. It's another happy ending
+              that wouldn't have been possible without you!
+            </p>
+            <hr style="border-top: 2px solid #e6e6e6; margin-bottom: 5px" />
+            <p class="lock-paragraph">
+              <i class="fa fa-lock" style="color: #FFC82A"></i> Houston SPCA is
+              recognized by the Better Business Bureau. Houston SPCA is a
+              501(c)3 tax-exempt charitable organization (EIN 74-1287171). Your
+              donation will be securely processed.
+            </p>
+            <div
+              style="
+                color: #14204a;
+                text-align: center;
+                color: #026785;
+                font-size: 16px;
+                margin-bottom: 20px;
+              "
+            >
+              <strong style="font-family: franklin-gothic-urw,sans-serif;">Invite your friends to save lives, too!</strong>
+            </div>
+            <ul class="social-link mb-3">
+              <li>
+                <a
+                  href="https://www.facebook.com/sharer/sharer.php?u=https://pursuant8.com/hspca/2022/jan/hspca12675/landing/landingpage.html"
+                  target="_blank"
+                  id="share-1"
+                >
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://twitter.com/intent/tweet?url=https://pursuant8.com/hspca/2022/jan/hspca12675/landing/landingpage.html&text=Help fill 2022 with happy endings for pets in need! Join me in supporting @HoustonSPCA to send rescue, pursue justice for victims of animal cruelty, and find loving new homes.&hashtags=AdoptDontShop,HappyEnding"
+                  target="_blank"
+                  >
+                  <i class="fab fa-twitter"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </article>
+    </main>
+    <footer class="theme-footer">
+      <div class="footer footer-container">
+        <!-- <div class="footer-logo">
+            <img
+               src="https://nvlupin.blob.core.windows.net/images/van/EA/EA005/1/77954/images/themes/houston-spca-logo-black.svg" />
+         </div> -->
+        <!-- <p>Copyright 2021 Houston SPCA. All Rights Reserved.</p>
+         <p class="menu-link">
+            <a href="#">Home</a>&nbsp;|&nbsp;
+            <a href="#">News</a>&nbsp;|&nbsp;
+            <a href="#">Events</a>&nbsp;|&nbsp;
+            <a href="#">Privacy Policy</a>&nbsp;|&nbsp;
+            <a href="#" id="menu-item-4">Contact</a>
+         </p> -->
+        <div class="footer-logo">
+          <div class="left">
+            <img src="img/White_Logo.png" />
+          </div>
+        </div>
+        <div style="font-size: 14px; color: white; font-family: franklin-gothic-urw,sans-serif;">
+          Copyright 2022 Houston SPCA. All Rights Reserved.
+        </div>
+        <div style="font-size: 14px; color: white;margin-bottom: 20px; font-family: franklin-gothic-urw,sans-serif;">
+          Home | News | Events | Privacy Policy | Contact
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://nvlupin.blob.core.windows.net/images/van/EA/EA005/1/77954/images/themes/everyaction-form-scripts.js?1"></script>
+    <script
+      type="text/javascript"
+      src="//d3rse9xjbp8270.cloudfront.net/assets/js/intl-tel.input.utils.js"
+    ></script>
+    <script>
+      document.querySelector("#modal-btn").click();
+    </script>
+    <script>
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+    </script>
+    <script>
+      var exhortation = document.querySelector(".exhortation");
+      var monthly = document.querySelector(".toggle-link.recurring");
+      var oneTime = document.querySelector(".toggle-link.onetime");
+
+      exhortation.style.display = "none";
+
+      oneTime.classList.add("active");
+
+      function handleMsg(value) {
+        if (value == "monthly") {
+          monthly.classList.add("active");
+          oneTime.classList.remove("active");
+          exhortation.style.display = "none";
+        } else if (value == "one") {
+          oneTime.classList.add("active");
+          monthly.classList.remove("active");
+          exhortation.style.display = "block";
+        }
+      }
+    </script>
+    <script>
+      var amount1 = document.querySelector("#d-btn1");
+      var amount2 = document.querySelector("#d-btn2");
+      var amount3 = document.querySelector("#d-btn3");
+      var amount4 = document.querySelector("#d-btn4");
+
+      amount1.classList.add("active");
+
+      function selectAmount(value) {
+        if (value == 1) {
+          amount1.classList.add("active");
+          amount2.classList.remove("active");
+          amount3.classList.remove("active");
+          amount4.classList.remove("active");
+        } else if (value == 2) {
+          amount2.classList.add("active");
+          amount1.classList.remove("active");
+          amount3.classList.remove("active");
+          amount4.classList.remove("active");
+        } else if (value == 3) {
+          amount3.classList.add("active");
+          amount2.classList.remove("active");
+          amount1.classList.remove("active");
+          amount4.classList.remove("active");
+        } else if (value == 4) {
+          amount4.classList.add("active");
+          amount2.classList.remove("active");
+          amount3.classList.remove("active");
+          amount1.classList.remove("active");
+        }
+      }
+    </script>
+  </body>
+</html>
